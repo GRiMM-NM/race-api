@@ -1,4 +1,4 @@
-package com.takima.race.races.services;
+package com.takima.race.services;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.takima.race.races.entities.Race;
-import com.takima.race.races.repositories.RaceRepositories;
+import com.takima.race.entities.Race;
+import com.takima.race.repositories.RaceRepositories;
 
 @Service
 public class RaceServices {
@@ -37,10 +37,15 @@ public class RaceServices {
             Race race = getById(id);
 
             race.setName(raceUpdated.getName());
-            race.setdate(raceUpdated.getDate());
+            race.setDate(raceUpdated.getDate());
             race.setLocation(raceUpdated.getLocation());
             race.setMaxParticipants(raceUpdated.getMaxParticipants());
 
             return racesRepositories.save(race);
+    }
+
+    public int countParticipants(Long raceId) {
+        Race race = getById(raceId);
+        return race.getRegistrations().size();
     }
 }

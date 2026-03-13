@@ -1,4 +1,4 @@
-package com.takima.race.runner.services;
+package com.takima.race.services;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.takima.race.runner.entities.Runner;
-import com.takima.race.runner.repositories.RunnerRepository;
+import com.takima.race.entities.Runner;
+import com.takima.race.repositories.RunnerRepository;
 
 @Service
 public class RunnerService {

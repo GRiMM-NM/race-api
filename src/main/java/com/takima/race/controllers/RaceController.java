@@ -1,4 +1,4 @@
-package com.takima.race.races.controllers;
+package com.takima.race.controllers;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.takima.race.races.entities.Race;
-import com.takima.race.races.services.RaceServices;
+import com.takima.race.entities.Race;
+import com.takima.race.services.RaceServices;
 
 @RestController
 @RequestMapping("/races")
@@ -40,5 +40,10 @@ public class RaceController {
     @PutMapping("/{id}")
     public Race update(@PathVariable Long id, @RequestBody Race race) {
         return racesServices.update(id, race);
+    }
+
+    @GetMapping("/{id}/participants/count")
+    public int countParticipants(@PathVariable Long id) {
+        return racesServices.countParticipants(id);
     }
 }
