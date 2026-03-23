@@ -1,17 +1,12 @@
 package com.takima.race.runner.controllers;
 
+import com.takima.race.race.entities.Race;
 import com.takima.race.runner.entities.Runner;
 import com.takima.race.runner.services.RunnerService;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/runners")
@@ -33,7 +28,25 @@ public class RunnerController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Runner create(@RequestBody Runner runner) {
         return runnerService.create(runner);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Runner update(@PathVariable Long id, @RequestBody Runner runner) {
+        return runnerService.update(id, runner);
+    }
+
+    @GetMapping("/{runnerId}/races")
+    public List<Race> getRacesByRunnerId(@PathVariable Long runnerId) {
+        return runnerService.getRacesByRunnerId(runnerId);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteRunner(@PathVariable Long id) {
+        runnerService.deleteRunner(id);
     }
 }
