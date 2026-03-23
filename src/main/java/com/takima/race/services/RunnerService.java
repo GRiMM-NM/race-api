@@ -1,9 +1,5 @@
 package com.takima.race.services;
 
-import com.takima.race.race.entities.Race;
-import com.takima.race.race.repositories.RaceRepository;
-import com.takima.race.registration.entities.Registration;
-import com.takima.race.registration.repositories.RegistrationRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.takima.race.entities.Race;
+import com.takima.race.entities.Registration;
 import com.takima.race.entities.Runner;
 import com.takima.race.repositories.RunnerRepository;
 
@@ -18,17 +16,9 @@ import com.takima.race.repositories.RunnerRepository;
 public class RunnerService {
 
     private final RunnerRepository runnerRepository;
-    private final RegistrationRepository registrationRepository;
-    private final RaceRepository raceRepository;
 
-    public RunnerService(
-            RunnerRepository runnerRepository,
-            RegistrationRepository registrationRepository,
-            RaceRepository raceRepository
-    ) {
+    public RunnerService(RunnerRepository runnerRepository) {
         this.runnerRepository = runnerRepository;
-        this.registrationRepository = registrationRepository;
-        this.raceRepository = raceRepository;
     }
 
     public List<Runner> getAll() {
@@ -62,17 +52,11 @@ public class RunnerService {
     }
 
     public List<Race> getRacesByRunnerId(Long runnerId) {
-        getById(runnerId);
-
-        List<Long> raceIds = registrationRepository.findByRunnerId(runnerId).stream()
-                .map(Registration::getRaceId)
+        Runner runner = getById(runnerId);
+        return runner.getRegistrations().stream()
+                .map(Registration::getRace)
+                .filter(race -> race != null)
                 .collect(Collectors.toList());
-
-        if (raceIds.isEmpty()) {
-            return List.of();
-        }
-
-        return raceRepository.findByIdIn(raceIds);
     }
 
     public void deleteRunner(Long id) {

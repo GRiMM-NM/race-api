@@ -1,5 +1,6 @@
 package com.takima.race.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -23,6 +24,7 @@ public class Runner {
     private Integer age;
 
     @OneToMany(mappedBy = "runner")
+    @JsonIgnore
     private List<Registration> registrations = new ArrayList<>();
 
     @Override

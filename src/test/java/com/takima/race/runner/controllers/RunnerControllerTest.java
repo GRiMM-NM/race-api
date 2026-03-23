@@ -1,8 +1,9 @@
 package com.takima.race.runner.controllers;
 
-import com.takima.race.race.entities.Race;
-import com.takima.race.runner.entities.Runner;
-import com.takima.race.runner.services.RunnerService;
+import com.takima.race.controllers.RunnerController;
+import com.takima.race.entities.Race;
+import com.takima.race.entities.Runner;
+import com.takima.race.services.RunnerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;

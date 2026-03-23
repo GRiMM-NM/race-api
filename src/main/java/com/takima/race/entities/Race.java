@@ -1,5 +1,6 @@
 package com.takima.race.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class Race {
     private Integer maxParticipants;
 
     @OneToMany(mappedBy= "race")
+    @JsonIgnore
     private List<Registration> registrations = new ArrayList<>();
 
     @Override
