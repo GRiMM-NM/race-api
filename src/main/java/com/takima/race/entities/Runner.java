@@ -1,11 +1,14 @@
-package com.takima.race.runner.entities;
+package com.takima.race.entities;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-import java.util.Objects;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Runner {
@@ -19,6 +22,9 @@ public class Runner {
     private String email;
     private Integer age;
 
+    @OneToMany(mappedBy = "runner")
+    private List<Registration> registrations = new ArrayList<>();
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -30,6 +36,7 @@ public class Runner {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+    
 
     // Getters
     public Long getId() { return id; }
@@ -37,6 +44,7 @@ public class Runner {
     public String getLastName() { return lastName; }
     public String getEmail() { return email; }
     public Integer getAge() { return age; }
+    public List<Registration> getRegistrations() {return registrations;}
 
     // Setters
     public void setId(Long id) { this.id = id; }
@@ -44,4 +52,7 @@ public class Runner {
     public void setLastName(String lastName) { this.lastName = lastName; }
     public void setEmail(String email) { this.email = email; }
     public void setAge(Integer age) { this.age = age; }
+    public void setRegistrations(List<Registration> registrations) { this.registrations = registrations; }
+
+
 }
