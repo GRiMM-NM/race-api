@@ -1,5 +1,9 @@
 # TP — Création d'une API REST : Gestion d'inscriptions à une course
 
+Voir README_LIVRABLE.md
+Voir README_LIVRABLE.md
+Voir README_LIVRABLE.md
+
 ## Objectif
 
 L'objectif de ce TP est de concevoir et développer une **API REST** permettant de gérer l'inscription de coureurs à différentes courses.
